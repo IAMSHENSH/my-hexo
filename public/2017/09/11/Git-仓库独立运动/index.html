@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="git,仓库独立,note," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="关于 Git 仓库独立的笔记">
+<meta name="keywords" content="git,仓库独立,note">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 仓库独立运动 - 实验笔记">
+<meta property="og:url" content="http://iamshensh.github.com/2017/09/11/Git-仓库独立运动/index.html">
+<meta property="og:site_name" content="IAMSHENSH">
+<meta property="og:description" content="关于 Git 仓库独立的笔记">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-13T02:22:13.908Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git 仓库独立运动 - 实验笔记">
+<meta name="twitter:description" content="关于 Git 仓库独立的笔记">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://iamshensh.github.com/2017/09/11/Git-仓库独立运动/"/>
+
+
+
+
+
+  <title>Git 仓库独立运动 - 实验笔记 | IAMSHENSH</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IAMSHENSH</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">我是世华</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamshensh.github.com/2017/09/11/Git-仓库独立运动/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="世华">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/my-avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IAMSHENSH">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git 仓库独立运动 - 实验笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-11T00:00:00+08:00">
+                2017-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>关于 Git 仓库独立的笔记</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在开发的过程中，因考虑到：</p>
+<blockquote>
+<ol>
+<li>项目「文档类文件」与项目「代码类文件」应该分开管理；</li>
+<li>项目管理人员与测试人员等角色无需接触「代码类文件」。</li>
+</ol>
+</blockquote>
+<p>因此采取将「代码类文件」从原仓库中剥离出来作为独立仓库的措施；</p>
+<p>目前，我已经尝试过将「project-a」内的「src」目录，通过 <code>git submodule</code> 的方式分离出一个单独的仓库作为子模块。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
+<li><p>在「src」内有「子模块A - model-a」，在实际开发过程中，项目工程代码经常因为不同的需求而进行不同分支上切换，直接导致在每次使用「子模块A」的时候就需要多次切换分支与重新编译，存在操作不便与严重拉低开发效率。因此需要将此目录「model-a」从「src」中独立出来。</p>
+</li>
+<li><p>原方法 「<code>git submodule</code>」 由于以下原因，故而改之尝试使用 「<code>git subtree</code>」</p>
+<blockquote>
+<ol>
+<li>根据官方文档，<code>git submodule</code> 在日常使用过程中，每次提交后都需要在上一级模块中使用 <code>git submodule update</code> 等命令，目前我们团队中还没有使用过，存在操作不当的风险；</li>
+<li><code>git subtree</code> 是 Git 官方推荐用来代替 <code>git submodule</code> 的新方式，官方宣称能更方便更合理的管理子模块；</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ol>
+<li>将「model-a」从 「src」仓库中独立；</li>
+<li>使用 「git subtree」 的方式，理解与「git submodule」的差别；</li>
+<li>决定在「model-a」使用哪种方式;</li>
+</ol>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="一、subtree-gt-在自己的-git-仓库上模拟试验"><a href="#一、subtree-gt-在自己的-git-仓库上模拟试验" class="headerlink" title="一、subtree -&gt; 在自己的 git 仓库上模拟试验"></a>一、subtree -&gt; 在自己的 git 仓库上模拟试验</h3><blockquote>
+<ul>
+<li>措施： 使用 「subtree」</li>
+<li>结果： 试验未完全成功、暂不采用</li>
+<li>原因：「<code>subtree</code>」模式下，子模块的改动，在上级仓库能侦测到，并且能提交。使用方式与原「<code>submodule</code>」存在差异，在现在开发紧张的阶段，考虑到学习与适应成本，暂不采用。</li>
+</ul>
+</blockquote>
+<h4 id="1-分离："><a href="#1-分离：" class="headerlink" title="1. 分离："></a>1. 分离：</h4><p>目的：将 「test 目录」分离出来；（因为这个目录带有log）</p>
+<ol>
+<li>把所有 <code>test</code> 目录下的相关提交整理为一个新的分支 「test-split」;（ps:此命令执行速度不快）<pre><code>$ git subtree split -P test -b test-split
+</code></pre></li>
+<li>另建一个新目录并初始化为 test 仓库 <pre><code>$ mkdir ../test
+$ cd ../test
+$ git init
+</code></pre></li>
+<li>拉取旧仓库的 test-split 分支到当前的 master 分支；<pre><code>$ git pull ../test-mama test-split
+</code></pre></li>
+<li>将此子仓库关联到远端； (ps:这里缺少其他分支的关联，未继深入尝试)<pre><code>$ git remote add origin ssh://git@****/****/****.git
+$ git push -u origin master
+</code></pre></li>
+<li><p>回到原项目目录，清理 master 分支上所有跟 「test 目录」有关的痕迹；(ps:此命令执行速度不快)</p>
+<blockquote>
+<p>遭遇问题：执行之后，母仓库就脱离了组织，无法 pull 与 push</p>
+</blockquote>
+<pre><code>$ cd ../test-mama
+$ git filter-branch --index-filter &quot;git rm -rf --cached --ignore-unmatch git&quot; --prune-empty master
+</code></pre></li>
+<li>另建一个新目录并初始化为 git 仓库；<pre><code>$ mkdir ../test-mama-fresh
+$ cd ../test-mama-fresh
+$ git init
+</code></pre></li>
+<li>拉取 <code>test-mama</code> 的 <code>master</code> 分支；（到新仓库的 master 分支）<pre><code>$ git pull ../test-mama master
+</code></pre>~~ 1. 改变远程仓库 -&gt; 到这里无法 push 和 pull 「更改被拒绝」 ~~<pre><code>~~ $ git remote add origin git@****/****/****.git ~~
+~~ $ git push origin -u master ~~
+</code></pre></li>
+</ol>
+<h4 id="2-关联："><a href="#2-关联：" class="headerlink" title="2. 关联："></a>2. 关联：</h4><p>目的：将分离出去的仓库与原项目关联</p>
+<ol>
+<li>将 git 的项目仓库下载到新仓库的指定目录下<pre><code>$ git subtree add --prefix=git ssh://git@****/****/****.git master
+</code></pre></li>
+</ol>
+<h4 id="3-更新"><a href="#3-更新" class="headerlink" title="3. 更新"></a>3. 更新</h4><p>目的：能进行推送代码与拉取代码的功能： </p>
+<ol>
+<li>将子目录的更改提交到服务器上：<pre><code>$ git subtree push --prefix=git ssh://git@****/****/****.git master
+</code></pre></li>
+<li>将子目录同步到服务器上最新的版本：<pre><code>$ git subtree pull --prefix=git ssh://git@****/****/****.git master
+</code></pre></li>
+</ol>
+<h4 id="4-问题"><a href="#4-问题" class="headerlink" title="4. 问题"></a>4. 问题</h4><ol>
+<li>分离出来的母仓库脱离了组织。</li>
+<li>分离出来的子仓库，像是复制出来的样子。</li>
+<li>在子仓库做的改动，母仓库能有检索。 这与 <code>submodule</code> 有差异。</li>
+</ol>
+<h3 id="二、submodule-gt-在自己的-git-仓库上模拟试验"><a href="#二、submodule-gt-在自己的-git-仓库上模拟试验" class="headerlink" title="二、submodule -&gt; 在自己的 git 仓库上模拟试验"></a>二、submodule -&gt; 在自己的 git 仓库上模拟试验</h3><blockquote>
+<ul>
+<li>措施： 使用 「filter-branch + submodule」</li>
+<li>结果： 试验成功，未采用 <code>submodule</code></li>
+<li>原因： <code>submodule</code> 已经使用过，然存有潜在的问题</li>
+</ul>
+</blockquote>
+<h4 id="1-剥离"><a href="#1-剥离" class="headerlink" title="1. 剥离"></a>1. 剥离</h4><p>目的：将目标子仓库分离出来</p>
+<ol>
+<li><code>clone</code> 出一个新的仓库到目录 test （这时候 test 的目录，与test-mama完全一样） <pre><code>$ git clone test-mama test
+</code></pre></li>
+<li>刚克隆出来的 test 仓库本地只会有一个分支，如果需要其他分支，则创建；（本仓库没有分，故没进行这一步）<pre><code>$ git branch br1 origin/br1  
+$ git branch br2 origin/br2 
+</code></pre></li>
+<li>最后origin这个remote是不需要的，把它删除了<pre><code>$ git remote rm origin
+</code></pre></li>
+</ol>
+<h4 id="2-独立"><a href="#2-独立" class="headerlink" title="2. 独立"></a>2. 独立</h4><ol>
+<li><p>将本仓库转化为 git 子模块！（这个最重要）</p>
+<blockquote>
+<p>该命令过滤所有历史提交，保留对 test 子目录有影响的提交，并且把子目录设为该仓库的根目录。<br>该命令执行完毕后，查看当前目录结构就会发现里面已经是子目录的内容了。</p>
+</blockquote>
+<pre><code>$ git filter-branch --tag-name-filter cat --prune-empty --subdirectory-filter git -- --all
+</code></pre></li>
+<li><p>清理仓库</p>
+<pre><code>$ git reset --hard
+$ git for-each-ref --format=&quot;%(refname)&quot; refs/original/ | xargs -n 1 git update-ref -d
+$ git reflog expire --expire=now --all
+$ git gc --aggressive --prune=now
+</code></pre></li>
+<li><p>最后，我们就可以把这个新的仓库提交到服务器上，然后把旧仓库中的 git 子目录删除并以 <code>submodule</code> 的方式添加 test-mama 仓库就好了。</p>
+</li>
+</ol>
+<h4 id="3-关联"><a href="#3-关联" class="headerlink" title="3. 关联"></a>3. 关联</h4><ol>
+<li><p>将整理好的仓库同步到服务器新的仓库地址；</p>
+<blockquote>
+<p>未尝试</p>
+</blockquote>
+</li>
+<li><p>然后把旧仓库中的 git 子目录删除，并以 submodle 的方式添加即可。</p>
+<blockquote>
+<p>未尝试</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="三、在-project-a-项目上实现"><a href="#三、在-project-a-项目上实现" class="headerlink" title="三、在 project-a 项目上实现"></a>三、在 project-a 项目上实现</h3><blockquote>
+<ul>
+<li>措施： 使用 「filter-branch + submodule」</li>
+<li>结果： 试验完成，正在使用，等待一段时间后的反馈</li>
+<li>原因： 因为 <code>subtree</code> 非完全独立仓库，也因为原来就是用着 <code>submodule</code> 存在潜在的问题，所以只采取了 <code>filter-branch</code> 分离措施；</li>
+</ul>
+</blockquote>
+<h4 id="1-剥离-1"><a href="#1-剥离-1" class="headerlink" title="1. 剥离"></a>1. 剥离</h4><p>目的：将目标子目录「model-a」分离出来</p>
+<ol>
+<li><p><code>clone</code> 出一个新的仓库到目录 plan-tool</p>
+<pre><code>$ git clone ssh://git@****/****/project-a.src.git plan-tool
+</code></pre></li>
+<li><p>添加其他必要的分支</p>
+<pre><code>$ git branch park-data  origin/park-data 
+$ git branch publish/data origin/publish/data
+</code></pre></li>
+<li><p>最后origin这个remote是不需要的，把它删除了</p>
+<pre><code>$ git remote rm origin
+</code></pre></li>
+</ol>
+<h4 id="2-独立-1"><a href="#2-独立-1" class="headerlink" title="2. 独立"></a>2. 独立</h4><p>目的：将子目录独立出新的仓库</p>
+<ol>
+<li><p>将本目录中的 「model-a」 转化为本仓库的根目录</p>
+<blockquote>
+<p>这个没有删除 tag </p>
+</blockquote>
+<pre><code>$ git filter-branch --tag-name-filter cat --prune-empty --subdirectory-filter model-a -- --all
+</code></pre></li>
+<li><p>整理仓库，清除无用信息</p>
+<blockquote>
+<p>下面的命令具体干了什么不知道，但是文件夹真的变小了。  本次操作中，4G -&gt; 256M</p>
+</blockquote>
+<pre><code>$ git reset --hard
+$ git for-each-ref --format=&quot;%(refname)&quot; refs/original/ | xargs -n 1 git update-ref -d
+$ git reflog expire --expire=now --all
+$ git gc --aggressive --prune=now
+</code></pre></li>
+</ol>
+<h4 id="3-关联-1"><a href="#3-关联-1" class="headerlink" title="3. 关联"></a>3. 关联</h4><p>目的：a. 将本地仓库与服务器的新仓库关联； b. 将子仓库与母仓库关联；</p>
+<ol>
+<li><p>将本地仓库，与服务器上新建的仓库关联起来</p>
+<pre><code>$ git remote add origin ssh://git@****/****/project-a.src.plat-tool.git
+</code></pre></li>
+<li><p>推送仓库 </p>
+<blockquote>
+<p>推送指定 <branch> 分支</branch></p>
+</blockquote>
+<pre><code>$ git push -u origin &lt;branch&gt;
+</code></pre><blockquote>
+<p>推送所有分支到远程仓库</p>
+</blockquote>
+<pre><code>$ git push --all
+</code></pre></li>
+<li><p>与母仓库关联</p>
+<blockquote>
+<p>暂时不做关联，直接以目录的方式放在「src」目录下</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><h4 id="submodule-与-subtree-对比"><a href="#submodule-与-subtree-对比" class="headerlink" title="submodule 与 subtree 对比"></a>submodule 与 subtree 对比</h4><blockquote>
+<p>在使用感觉上， <code>git submodule</code> 类似于引用仓库，而 <code>git subtree</code> 似徐于复制仓库。<br>使用 <code>git submodule</code></p>
+<ol>
+<li>母仓库与子仓库各自的 <code>pull</code> 与 <code>push</code> 互不关联，母仓库只知道子仓库有改动，但具体的改动不能知道。<br>使用 <code>git subtree</code></li>
+<li>子仓库做具体的修改，母仓库可知道。并且在母仓库可提交与记录子仓库的改动。</li>
+<li>使用 <code>git subtree push</code> 可在母仓库的提交中遍历出与子仓库相关的改动，单独提交与记录到子仓库上。</li>
+</ol>
+</blockquote>
+<h4 id="filter-branch-使用"><a href="#filter-branch-使用" class="headerlink" title="filter-branch 使用"></a>filter-branch 使用</h4><blockquote>
+<p>此命令用于仓库分离，以后再详细研究；</p>
+</blockquote>
+<h4 id="Git仓库清理"><a href="#Git仓库清理" class="headerlink" title="Git仓库清理"></a>Git仓库清理</h4><blockquote>
+<p>有命令可以让 Git 仓库瘦身，下次在 「project-a」上尝试<br>用一下命令清理「project-a」仓库，从 25.8 GB -&gt; 24.3 GB<br>以下为操作指令，效果很不明显。 原因不明，日后再查 </p>
+</blockquote>
+<pre><code>$ git gc --aggressive --prune=now
+对象计数中: 77604, 完成.
+Delta compression using up to 4 threads.
+压缩对象中: 100% (73701/73701), 完成.
+写入对象中: 100% (77604/77604), 完成.
+Total 77604 (delta 35291), reused 40791 (delta 0)
+正在删除重复对象: 100% (256/256), 完成.
+检查连接中: 77604, 完成.
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/仓库独立/" rel="tag"># 仓库独立</a>
+          
+            <a href="/tags/note/" rel="tag"># note</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/11/Git-新仓库初始化流程/" rel="next" title="Git 新仓库初始化流程">
+                <i class="fa fa-chevron-left"></i> Git 新仓库初始化流程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/11/Git-仓库迁移/" rel="prev" title="Git 仓库迁移">
+                Git 仓库迁移 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/my-avatar.jpg"
+               alt="世华" />
+          <p class="site-author-name" itemprop="name">世华</p>
+           
+              <p class="site-description motion-element" itemprop="description">世华的笔记</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">2.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">3.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">4.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、subtree-gt-在自己的-git-仓库上模拟试验"><span class="nav-number">4.1.</span> <span class="nav-text">一、subtree -> 在自己的 git 仓库上模拟试验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-分离："><span class="nav-number">4.1.1.</span> <span class="nav-text">1. 分离：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-关联："><span class="nav-number">4.1.2.</span> <span class="nav-text">2. 关联：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-更新"><span class="nav-number">4.1.3.</span> <span class="nav-text">3. 更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-问题"><span class="nav-number">4.1.4.</span> <span class="nav-text">4. 问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、submodule-gt-在自己的-git-仓库上模拟试验"><span class="nav-number">4.2.</span> <span class="nav-text">二、submodule -> 在自己的 git 仓库上模拟试验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-剥离"><span class="nav-number">4.2.1.</span> <span class="nav-text">1. 剥离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-独立"><span class="nav-number">4.2.2.</span> <span class="nav-text">2. 独立</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-关联"><span class="nav-number">4.2.3.</span> <span class="nav-text">3. 关联</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、在-project-a-项目上实现"><span class="nav-number">4.3.</span> <span class="nav-text">三、在 project-a 项目上实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-剥离-1"><span class="nav-number">4.3.1.</span> <span class="nav-text">1. 剥离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-独立-1"><span class="nav-number">4.3.2.</span> <span class="nav-text">2. 独立</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-关联-1"><span class="nav-number">4.3.3.</span> <span class="nav-text">3. 关联</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、总结"><span class="nav-number">4.4.</span> <span class="nav-text">四、总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#submodule-与-subtree-对比"><span class="nav-number">4.4.1.</span> <span class="nav-text">submodule 与 subtree 对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#filter-branch-使用"><span class="nav-number">4.4.2.</span> <span class="nav-text">filter-branch 使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git仓库清理"><span class="nav-number">4.4.3.</span> <span class="nav-text">Git仓库清理</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">世华</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

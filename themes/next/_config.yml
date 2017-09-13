@@ -46,11 +46,11 @@ index_with_subtitle: false
 # When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash (/archives -> archives)
 menu:
   home: /
-  #categories: /categories/
-  #about: /about/
   archives: /archives/
+  categories: /categories/
   tags: /tags/
-  #sitemap: /sitemap.xml
+  sitemap: /sitemap.xml
+  about: /about/
   #commonweal: /404/
 
 # Enable/Disable menu icons.
@@ -77,8 +77,8 @@ menu_icons:
 
 # Schemes
 #scheme: Muse
-#scheme: Mist
-scheme: Pisces
+scheme: Mist
+#scheme: Pisces
 #scheme: Gemini
 
 
@@ -125,7 +125,7 @@ social_icons:
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.jpg
 # in site  directory(source/uploads): /uploads/avatar.jpg
-#avatar:
+avatar: /images/my-avatar.jpg
 
 # Table Of Contents in the Sidebar
 toc:

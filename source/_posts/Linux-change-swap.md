@@ -7,7 +7,7 @@ tags:
 categories: Linux
 ---
 
-
+![linux-swap](http://ovlnfs1rj.bkt.clouddn.com/linux-swap.JPG)
 > 关于在 Linux 安装后调整 Swap 的方法
 
 <!-- more -->
@@ -81,3 +81,6 @@ $ su root
 ```
 # swappoff -a
 ```
+---
+
+题图：来源于 Google

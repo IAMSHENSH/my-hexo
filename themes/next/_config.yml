@@ -49,7 +49,7 @@ menu:
   archives: /archives/
   categories: /categories/
   tags: /tags/
-  sitemap: /sitemap.xml
+#  sitemap: /sitemap.xml
   about: /about/
   #commonweal: /404/
 

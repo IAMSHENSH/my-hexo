@@ -9,4 +9,4 @@ type: "about"
 
 - isshensh(at)163.com
 
-- [Github 地址](https://github.com/IAMSHENSH/my-hexo)
+- [Github 地址](https://github.com/IAMSHENSH)

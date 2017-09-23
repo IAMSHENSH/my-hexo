@@ -72,3 +72,6 @@ $ git push --mirror
 >  * [new branch]      customer -> customer
 >  * [new branch]      refs/keep-around/6780f93f4b5c07c2f9de9ee9f1af591b9ad1e874 -> refs/keep-around/6780f93f4b5c07c2f9de9ee9f1af591b9ad1e874
 ```
+
+---
+本站点采用[知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh)进行许可。

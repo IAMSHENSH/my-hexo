@@ -42,3 +42,6 @@ jenkins:latest
 
 1. 使用 linux 的 shell 命令；
 > To do something
+
+---
+本站点采用[知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh)进行许可。

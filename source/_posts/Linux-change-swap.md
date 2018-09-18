@@ -12,16 +12,18 @@ categories: Linux
 
 <!-- more -->
 
-## 调整步骤
+# 调整步骤
 
 1. 切换到超级用户
-``` 
+
+``` shell
 $ su root
 > Password:
 ```
 
 1. 在 「/root/」目录下创建一个 2GB 名为「myswaofile」的交换文件
-```
+
+```shell
 # dd if=/dev/zero of=/root/myswapfile bs=1G count=2 
 > 2+0 records in
 > 2+0 records out
@@ -32,38 +34,44 @@ $ su root
 ```
 
 1. 设置文件权限，以保护此 swap 分区
-```
+
+```shell
 # chmod 600 /root/myswapfile
 ```
 
 1. 使用 `mkswap`命令，让此文件设置 「swap」
-```
+
+```shell
 # mkswap /root/myswapfile
 > Setting up swapspace version 1, size = 2 GiB (2147479552 bytes)
 > no label, UUID=efdad09d-d48c-4c2b-a2e4-7704b4991881
 ```
 
 1. 启动交换文件
-```
+
+```shell
 # swapon /root/myswapfile
 ```
 
 1. 为了确保开机启动，在「/etc/fstab」末尾加入：
 > CoreOS 无此文件
-```
+
+```shell
 # cat /etc/fstab
 > cat: /etc/fstab: No such file or directory
 ```
 
 1. 查看系统中交换文件设置情况
-```
+
+```shell
 # swapon -s
 > Filename				         Type		Size	Used	Priority
 > /root/myswapfile               file    	2097148	0	    -1
 ```
 
 1. 使用 `free` 确认再次确认
-```
+
+```shell
 # free -h
 >              total       used       free     shared    buffers     cached
 > Mem:           11G       4.6G       7.2G        16M        71M       2.6G
@@ -71,16 +79,20 @@ $ su root
 > Swap:         2.0G         0B       2.0G
 ```
 
-## 其他命令
+# 其他命令
 
 打开所有交换空间
-```
+
+```shell
 # swappon -a
 ```
+
 关闭所有交换空间
-```
+
+```shell
 # swappoff -a
 ```
+
 ---
 
 题图：来源于 Google

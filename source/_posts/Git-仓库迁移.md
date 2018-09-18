@@ -3,7 +3,6 @@ title: Git 仓库迁移
 date: 2017-09-11 
 tags: 
 - git
-- 仓库迁移
 categories: Git
 
 ---
@@ -12,32 +11,33 @@ categories: Git
 
 <!-- more -->
 
-## 迁移命令模板
+# 迁移命令模板
 
 1. 镜像克隆：
-```
+
+```shell
 git clone --mirror  https://github.com/../old.git old.git
 cd old.git
 ```
 
 1. 然后推送镜像：
-```
+
+```shell
 git remote set-url --push origin git@gitcafe.com/.../new.git
 git push --mirror
 ```
 
 1. 或者推送新建remote再推送：
-```
+
+```shell
 git remote add mirror origin git@gitcafe.com/.../new.git
 git push mirror --all
 git push mirror --tags
 ```
 
-
-
 ## project-a 迁移实例
 
-```
+```shell
 $ git clone --mirror ssh://git@****:****/****/project-a.git
 > 克隆到纯仓库 'project-a.git'...
 > remote: Counting objects: 7012, done.
@@ -47,15 +47,17 @@ $ git clone --mirror ssh://git@****:****/****/project-a.git
 > 处理 delta 中: 100% (2835/2835), 完成.
 ```
 
-```
+```shell
 $ cd project-a.git/
+$
 ```
 
-```
+```shell
 $ git remote set-url --push origin ssh://git@****:****/****/project-a.git
+$
 ```
 
-```
+```shell
 $ git push --mirror
 > The authenticity of host '[server]:10090 ([172.24.***.***]:10090)' can't be established.
 > ECDSA key fingerprint is SHA256:nVnsCJaQGoJh0ehUKJ2/v4YQkJIKM2VzadcoUvTyFKc.

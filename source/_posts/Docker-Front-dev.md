@@ -10,6 +10,8 @@ categories: Docker
 
 ---
 
+![前端开发环境题图](http://ovlnfs1rj.bkt.clouddn.com/front-end-dev.jpg)
+
 > 关于使用 Docker 搭建前端开发环境，容器内包括 Node , Yarn。
 
 <!-- more -->
